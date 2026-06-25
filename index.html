@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABLES (same as before, kept minimal) ===== */
+        /* ===== RESET & VARIABLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +42,6 @@
             background: var(--gray-50);
             color: var(--gray-800);
             min-height: 100vh;
-            overflow-x: hidden;
         }
         ::-webkit-scrollbar {
             width: 6px;
@@ -56,7 +55,7 @@
             border-radius: 8px;
         }
 
-        /* ===== AUTH PAGES ===== */
+        /* ===== AUTH ===== */
         .auth-page {
             min-height: 100vh;
             display: flex;
@@ -65,7 +64,6 @@
             background: linear-gradient(135deg, #064e3b 0%, #1a7d3a 50%, #fcd34d 100%);
             padding: 20px;
             position: relative;
-            overflow: hidden;
         }
         .auth-page::before {
             content: '';
@@ -95,30 +93,30 @@
                 transform: translateY(0);
             }
         }
-        .auth-container .auth-logo {
+        .auth-logo {
             text-align: center;
             margin-bottom: 32px;
         }
-        .auth-container .auth-logo .flag-icon {
+        .auth-logo .flag-icon {
             font-size: 48px;
             display: block;
             margin-bottom: 8px;
         }
-        .auth-container .auth-logo h1 {
+        .auth-logo h1 {
             font-size: 26px;
             font-weight: 800;
             color: var(--gray-900);
             letter-spacing: -0.5px;
         }
-        .auth-container .auth-logo h1 span {
+        .auth-logo h1 span {
             color: var(--primary);
         }
-        .auth-container .auth-logo p {
+        .auth-logo p {
             color: var(--gray-500);
             font-size: 14px;
             margin-top: 2px;
         }
-        .auth-container .tab-bar {
+        .tab-bar {
             display: flex;
             gap: 0;
             border-radius: var(--radius-sm);
@@ -126,7 +124,7 @@
             padding: 4px;
             margin-bottom: 28px;
         }
-        .auth-container .tab-bar button {
+        .tab-bar button {
             flex: 1;
             padding: 10px;
             border: none;
@@ -138,7 +136,7 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        .auth-container .tab-bar button.active {
+        .tab-bar button.active {
             background: white;
             color: var(--gray-900);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -216,13 +214,13 @@
         .auth-form .form-success.show {
             display: block;
         }
-        .auth-form .role-selector {
+        .role-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 4px;
         }
-        .auth-form .role-selector .role-option {
+        .role-selector .role-option {
             padding: 12px;
             border: 2px solid var(--gray-200);
             border-radius: var(--radius-sm);
@@ -233,22 +231,43 @@
             font-size: 14px;
             color: var(--gray-600);
         }
-        .auth-form .role-selector .role-option:hover {
+        .role-selector .role-option:hover {
             border-color: var(--primary-light);
             background: var(--green-bg);
         }
-        .auth-form .role-selector .role-option.selected {
+        .role-selector .role-option.selected {
             border-color: var(--primary);
             background: var(--green-bg);
             color: var(--primary);
         }
-        .auth-form .role-selector .role-option i {
+        .role-selector .role-option i {
             display: block;
             font-size: 24px;
             margin-bottom: 4px;
         }
+        .flag-stripe {
+            display: flex;
+            height: 4px;
+            width: 100%;
+            border-radius: 0 0 4px 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .flag-stripe span {
+            flex: 1;
+            height: 100%;
+        }
+        .flag-stripe .green {
+            background: #1a7d3a;
+        }
+        .flag-stripe .yellow {
+            background: #fcd34d;
+        }
+        .flag-stripe .red {
+            background: #dc2626;
+        }
 
-        /* ===== MAIN APP ===== */
+        /* ===== APP ===== */
         .app-container {
             display: none;
             min-height: 100vh;
@@ -513,8 +532,7 @@
             }
         }
 
-        /* ===== DEPARTMENT, SUBJECT GRID, QUIZ, FLASHCARDS, RESOURCES, PROGRESS ===== */
-        /* (All styles from previous versions – we include them all) */
+        /* ===== COMMON COMPONENTS ===== */
         .dept-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1083,28 +1101,6 @@
             display: block;
         }
 
-        .flag-stripe {
-            display: flex;
-            height: 4px;
-            width: 100%;
-            border-radius: 0 0 4px 4px;
-            overflow: hidden;
-            margin-top: 4px;
-        }
-        .flag-stripe span {
-            flex: 1;
-            height: 100%;
-        }
-        .flag-stripe .green {
-            background: #1a7d3a;
-        }
-        .flag-stripe .yellow {
-            background: #fcd34d;
-        }
-        .flag-stripe .red {
-            background: #dc2626;
-        }
-
         .hidden {
             display: none !important;
         }
@@ -1456,7 +1452,6 @@
                     <span id="practiceSubjectName">Subject</span>
                 </div>
                 <div class="quiz-container" id="quizContainer">
-                    <!-- Quiz Setup -->
                     <div id="quizSetup">
                         <div class="dash-card" style="background:white;border-radius:var(--radius);border:1px solid var(--gray-200);padding:24px 28px;max-width:520px;margin:0 auto;box-shadow:var(--shadow-sm);">
                             <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;"><i class="fas fa-cog" style="color:var(--primary);margin-right:8px;"></i> Practice Setup</h3>
@@ -1478,7 +1473,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Quiz Active -->
                     <div id="quizActive" class="hidden">
                         <div class="quiz-header">
                             <div class="quiz-meta">
@@ -1508,7 +1502,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Quiz Results -->
                     <div id="quizResults" class="hidden">
                         <div class="results-card" id="resultsCard">
                             <div class="score-circle" id="scoreCircle">78%</div>
@@ -1600,7 +1593,7 @@
         // ================================================================
         //  CONFIGURATION
         // ================================================================
-        const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // Replace with your Formspree endpoint ID
+        const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // Replace with your own Formspree endpoint
         const FORMSPREE_URL = FORMSPREE_ID !== 'YOUR_FORMSPREE_ID' ?
             `https://formspree.io/f/${FORMSPREE_ID}` :
             null;
@@ -1629,9 +1622,9 @@
             aptitude: { name: 'Aptitude', icon: '🧠' }
         };
 
-        // ===== QUESTION BANK (static, 30+ per subject) =====
+        // ===== QUESTION BANK (30+ per subject) =====
         function generateQuestions(subject) {
-            const base = {
+            const templates = {
                 physics: [
                     { q: 'SI unit of force?', opts: ['Newton', 'Joule', 'Watt', 'Pascal'], ans: 0 },
                     { q: 'Acceleration due to gravity?', opts: ['9.8 m/s²', '8.9', '10.8', '7.8'], ans: 0 },
@@ -1793,9 +1786,8 @@
                 ]
             };
 
-            let qs = base[subject] || [];
+            let qs = templates[subject] || [];
             if (!qs.length) qs = [{ q: 'Sample?', opts: ['A', 'B', 'C', 'D'], ans: 0 }];
-            // Expand to at least 30
             let expanded = [...qs];
             for (let i = 0; i < 15; i++) {
                 qs.forEach(q => {
@@ -1921,7 +1913,6 @@
             users.push(user);
             localStorage.setItem('examPrepUsers', JSON.stringify(users));
 
-            // Send to Formspree if configured
             if (FORMSPREE_URL) {
                 try {
                     await fetch(FORMSPREE_URL, {
@@ -1952,7 +1943,6 @@
             document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
             const saved = localStorage.getItem(`examPrep_progress_${user.email}`);
             if (saved) { try { state.progress = JSON.parse(saved); } catch (e) {} }
-            // Reset register button
             document.getElementById('registerBtn').disabled = false;
             document.getElementById('registerBtn').innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
             navigateTo('dashboard');
@@ -2024,6 +2014,7 @@
             document.getElementById('sidebarOverlay').classList.remove('active');
         }
 
+        // Mobile toggle
         document.getElementById('mobileToggle').addEventListener('click', () => {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('sidebarOverlay').classList.toggle('active');
@@ -2446,36 +2437,7 @@
             chartDrawn = true;
         }
 
-        // ================================================================
-        //  INIT
-        // ================================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUser = localStorage.getItem('examPrep_session');
-            if (savedUser) {
-                try {
-                    const user = JSON.parse(savedUser);
-                    const users = JSON.parse(localStorage.getItem('examPrepUsers') || '[]');
-                    const found = users.find(u => u.email === user.email);
-                    if (found) { loginUser(found); return; }
-                } catch (e) {}
-            }
-            document.getElementById('authPage').style.display = 'flex';
-        });
-
-        // Override loginUser to save session
-        const origLogin = loginUser;
-        loginUser = function(user) {
-            origLogin(user);
-            localStorage.setItem('examPrep_session', JSON.stringify({ email: user.email, name: user.name }));
-        };
-
-        const origLogout = handleLogout;
-        handleLogout = function() {
-            origLogout();
-            localStorage.removeItem('examPrep_session');
-        };
-
-        // Polyfill roundRect
+        // Polyfill roundRect if needed
         if (!CanvasRenderingContext2D.prototype.roundRect) {
             CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
                 if (r > w / 2) r = w / 2;
@@ -2494,9 +2456,26 @@
             };
         }
 
-        console.log('✅ ExamPrep fully loaded and ready!');
-        console.log('🔐 Registration works with Formspree (set FORMSPREE_ID) and localStorage.');
-        console.log('📚 All subjects have 30+ questions, flashcards, and resources with Ministry links.');
+        // ================================================================
+        //  INIT
+        // ================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('examPrep_session');
+            if (savedUser) {
+                try {
+                    const user = JSON.parse(savedUser);
+                    const users = JSON.parse(localStorage.getItem('examPrepUsers') || '[]');
+                    const found = users.find(u => u.email === user.email);
+                    if (found) { loginUser(found); return; }
+                } catch (e) {}
+            }
+            document.getElementById('authPage').style.display = 'flex';
+        });
+
+        console.log('✅ ExamPrep is fully functional!');
+        console.log('🔐 Registration saves locally and can send to Formspree if configured.');
+        console.log('📚 Question bank has 30+ questions per subject.');
+        console.log('🔗 Resource links point to the Ministry of Education portal.');
     </script>
 </body>
 </html>
