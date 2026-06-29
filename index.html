@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABLES (same as before) ===== */
+        /* ===== RESET & VARIABLES ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1a7d3a; --primary-light: #2e9b4e; --primary-dark: #0f5c28;
@@ -305,12 +305,12 @@
                     <input type="hidden" id="regRole" value="student" />
                 </div>
                 <div class="form-error" id="registerError">Please fill in all fields correctly.</div>
-                <div class="form-success" id="registerSuccess">Account created! A confirmation has been sent via Formspree. You are now logged in.</div>
+                <div class="form-success" id="registerSuccess">Account created! Your registration has been sent to the admin via Formspree. You are now logged in.</div>
                 <button type="submit" class="btn-auth" id="registerBtn">
                     <i class="fas fa-user-plus"></i> Create Account
                 </button>
                 <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--gray-400);">
-                    <i class="fas fa-shield-alt"></i> Your registration will be sent to the admin via Formspree.
+                    <i class="fas fa-shield-alt"></i> Your registration will be stored in your Formspree account.
                 </p>
             </form>
         </div>
@@ -630,8 +630,8 @@
                 <div class="ministry-note">
                     <i class="fas fa-info-circle" style="margin-right:8px;"></i>
                     <strong>Official Textbooks:</strong> All Grade 12 textbooks are available for free download from the
-                    <a href="https://www.moe.gov.et/curriculum" target="_blank">Ministry of Education Curriculum Portal</a>.
-                    Click <strong>“Open”</strong> below to visit the curriculum section directly.
+                    <a href="https://www.moe.gov.et/" target="_blank">Ministry of Education Official Website</a>.
+                    Click <strong>“Open”</strong> below to visit the ministry site, then navigate to the Curriculum section (or use the site's search).
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
                     <p style="color:var(--gray-500);font-size:14px;">Curriculum books, reference materials, and video lessons.</p>
@@ -687,8 +687,8 @@
         // ================================================================
         //  CONFIGURATION
         // ================================================================
-        // Accept either full URL or just the form ID
-        let FORMSPREE_INPUT = 'mnjkprag'; // Replace with your form ID or full URL
+        // Replace 'mnjkprag' with your actual Formspree form ID (or full URL)
+        let FORMSPREE_INPUT = 'mnjkprag';
         let FORMSPREE_URL = null;
         if (FORMSPREE_INPUT.startsWith('http://') || FORMSPREE_INPUT.startsWith('https://')) {
             FORMSPREE_URL = FORMSPREE_INPUT;
@@ -919,21 +919,21 @@
             ];
         });
 
-        // ===== RESOURCES (curriculum portal + social) =====
-        const CURRICULUM_PORTAL = 'https://www.moe.gov.et/curriculum';
+        // ===== RESOURCES (link to main site) =====
+        const MINISTRY_MAIN = 'https://www.moe.gov.et/';
         const RESOURCE_DATA = {};
         Object.keys(SUBJECT_META).forEach(k => {
             const meta = SUBJECT_META[k];
             RESOURCE_DATA[k] = [
                 { title: `${meta.name} Student Textbook - Grade 12`,
-                    desc: 'New Curriculum (2023) – Direct link to the curriculum portal.',
-                    type: '📚 Textbook', tag: 'Core', link: CURRICULUM_PORTAL },
+                    desc: 'New Curriculum (2023) – Find it on the Ministry website.',
+                    type: '📚 Textbook', tag: 'Core', link: MINISTRY_MAIN },
                 { title: `${meta.name} Teacher\'s Guide`,
-                    desc: 'New Curriculum (2023) – Available on the curriculum portal.',
-                    type: '📖 Guide', tag: 'Teacher', link: CURRICULUM_PORTAL },
+                    desc: 'New Curriculum (2023) – Available on the Ministry site.',
+                    type: '📖 Guide', tag: 'Teacher', link: MINISTRY_MAIN },
                 { title: `${meta.name} Past Exam Questions`,
-                    desc: 'Compilation from 2015–2023 – Download from the portal.',
-                    type: '📑 Past Papers', tag: 'Exam', link: CURRICULUM_PORTAL },
+                    desc: 'Compilation from 2015–2023 – Download from the Ministry portal.',
+                    type: '📑 Past Papers', tag: 'Exam', link: MINISTRY_MAIN },
                 { title: `${meta.name} Video Lessons`,
                     desc: 'Recommended YouTube playlist – click to open.',
                     type: '🎥 Video', tag: 'Video', link: 'https://www.youtube.com/playlist?list=PLdTvP-9q3l4z-video' },
@@ -1023,7 +1023,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, email, role, message: `New registration: ${name} (${email}) as ${role}` })
                     });
-                    console.log('Registration data sent to Formspree.');
+                    console.log('✅ Registration data sent to Formspree.');
                 } catch (err) {
                     console.warn('Formspree error:', err);
                 }
@@ -1577,9 +1577,9 @@
             document.getElementById('authPage').style.display = 'flex';
         });
 
-        console.log('✅ ExamPrep fully functional with Formspree, curriculum portal, and community links.');
-        console.log('📚 All textbook links point directly to the curriculum portal.');
-        console.log('📱 Added Telegram and YouTube references for students.');
+        console.log('✅ ExamPrep fully functional with Formspree and fixed curriculum link.');
+        console.log('📚 Textbook links now point to the main Ministry site (no 404).');
+        console.log('📱 Telegram and YouTube links added for students.');
     </script>
 </body>
 </html>
