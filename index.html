@@ -197,6 +197,16 @@
         .social-section .social-link:hover { background: var(--primary-light); color: white; transform: translateY(-2px); box-shadow: var(--shadow); }
         .social-section .social-link i { font-size: 24px; }
 
+        .external-resources-section { margin-top: 24px; padding: 20px; background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); }
+        .external-resources-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .external-resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 14px; }
+        .external-resource-card { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--radius-sm); background: var(--gray-50); border: 1px solid var(--gray-200); transition: var(--transition); text-decoration: none; color: var(--gray-700); }
+        .external-resource-card:hover { background: var(--green-bg); border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .external-resource-card .er-icon { font-size: 28px; width: 40px; text-align: center; }
+        .external-resource-card .er-info { flex: 1; }
+        .external-resource-card .er-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+        .external-resource-card .er-info p { font-size: 12px; color: var(--gray-500); margin: 0; }
+
         .progress-chart-wrap { background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 24px; margin-bottom: 24px; }
         .progress-chart-wrap canvas { width: 100% !important; max-height: 200px; }
         .subject-progress { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; }
@@ -228,6 +238,7 @@
             .flashcard-grid { grid-template-columns: 1fr 1fr; }
             .resource-grid { grid-template-columns: 1fr; }
             .social-section { flex-direction: column; align-items: stretch; }
+            .external-resources-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .subject-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -637,6 +648,44 @@
                     <p style="color:var(--gray-500);font-size:14px;">Curriculum books, reference materials, and video lessons.</p>
                 </div>
                 <div class="resource-grid" id="resourceGrid"></div>
+
+                <!-- ===== NEW: External Reference Resources ===== -->
+                <div class="external-resources-section">
+                    <h3>📚 Additional Exam Preparation Resources</h3>
+                    <p style="color:var(--gray-500);font-size:14px;margin-bottom:12px;">
+                        Access more past exam papers, short notes, and video lessons from these trusted platforms.
+                    </p>
+                    <div class="external-resources-grid">
+                        <a href="https://books.examgalaxy.com/" target="_blank" class="external-resource-card">
+                            <div class="er-icon">📘</div>
+                            <div class="er-info">
+                                <h4>Exam Galaxy</h4>
+                                <p>2000+ EUEE questions (2007–2017) & free textbooks[reference:4]</p>
+                            </div>
+                        </a>
+                        <a href="https://ethioexam.et/" target="_blank" class="external-resource-card">
+                            <div class="er-icon">📝</div>
+                            <div class="er-info">
+                                <h4>EthioExam</h4>
+                                <p>400K+ practice questions, 10+ years of past papers[reference:5]</p>
+                            </div>
+                        </a>
+                        <a href="https://tikuretentrance.com/" target="_blank" class="external-resource-card">
+                            <div class="er-icon">📖</div>
+                            <div class="er-info">
+                                <h4>Tikuret Entrance</h4>
+                                <p>Textbooks, past papers, short notes & AI-powered learning[reference:6]</p>
+                            </div>
+                        </a>
+                        <a href="https://www.youtube.com/@Saquama" target="_blank" class="external-resource-card">
+                            <div class="er-icon">🎥</div>
+                            <div class="er-info">
+                                <h4>Saquama YouTube</h4>
+                                <p>Free video lessons on Maths, Physics, Chemistry & Biology in Amharic[reference:7][reference:8]</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Social Media & Community -->
                 <div style="margin-top:24px;">
@@ -1577,9 +1626,9 @@
             document.getElementById('authPage').style.display = 'flex';
         });
 
-        console.log('✅ ExamPrep fully functional with Formspree and fixed curriculum link.');
-        console.log('📚 Textbook links now point to the main Ministry site (no 404).');
-        console.log('📱 Telegram and YouTube links added for students.');
+        console.log('✅ ExamPrep fully functional with external resources added.');
+        console.log('📚 Added Exam Galaxy, EthioExam, Tikuret Entrance, and Saquama YouTube.');
+        console.log('📱 Students can now access additional exam papers, short notes, and video lessons.');
     </script>
 </body>
 </html>
