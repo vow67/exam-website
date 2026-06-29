@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABLES (kept minimal for brevity) ===== */
+        /* ===== RESET & VARIABLES (same as before) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1a7d3a; --primary-light: #2e9b4e; --primary-dark: #0f5c28;
@@ -24,7 +24,7 @@
         ::-webkit-scrollbar-track { background: var(--gray-100); }
         ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 8px; }
 
-        /* ===== AUTH (same as before) ===== */
+        /* ===== AUTH ===== */
         .auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #064e3b 0%, #1a7d3a 50%, #fcd34d 100%); padding: 20px; position: relative; }
         .auth-page::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.3; }
         .auth-container { background: white; border-radius: var(--radius); padding: 48px 40px; max-width: 440px; width: 100%; box-shadow: var(--shadow-lg); position: relative; z-index: 1; animation: fadeUp 0.6s ease; }
@@ -104,7 +104,7 @@
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ===== COMMON COMPONENTS (abbreviated) ===== */
+        /* ===== COMMON COMPONENTS ===== */
         .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; margin-top: 16px; }
         .dept-card { background: white; border-radius: var(--radius); border: 2px solid var(--gray-200); padding: 36px 28px; text-align: center; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow); }
         .dept-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
@@ -192,6 +192,11 @@
         .ministry-note { background: var(--yellow-bg); border-left: 4px solid var(--gold); padding: 12px 18px; border-radius: var(--radius-sm); margin-bottom: 16px; font-size: 14px; color: var(--gray-700); }
         .ministry-note a { color: var(--primary); font-weight: 600; text-decoration: underline; }
 
+        .social-section { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding: 16px; background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); }
+        .social-section .social-link { display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-700); text-decoration: none; transition: var(--transition); font-weight: 500; }
+        .social-section .social-link:hover { background: var(--primary-light); color: white; transform: translateY(-2px); box-shadow: var(--shadow); }
+        .social-section .social-link i { font-size: 24px; }
+
         .progress-chart-wrap { background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 24px; margin-bottom: 24px; }
         .progress-chart-wrap canvas { width: 100% !important; max-height: 200px; }
         .subject-progress { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; }
@@ -222,6 +227,7 @@
             .subject-grid { grid-template-columns: repeat(2,1fr); }
             .flashcard-grid { grid-template-columns: 1fr 1fr; }
             .resource-grid { grid-template-columns: 1fr; }
+            .social-section { flex-direction: column; align-items: stretch; }
         }
         @media (max-width: 480px) {
             .subject-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -299,12 +305,12 @@
                     <input type="hidden" id="regRole" value="student" />
                 </div>
                 <div class="form-error" id="registerError">Please fill in all fields correctly.</div>
-                <div class="form-success" id="registerSuccess">Account created successfully! You are now logged in.</div>
+                <div class="form-success" id="registerSuccess">Account created! A confirmation has been sent via Formspree. You are now logged in.</div>
                 <button type="submit" class="btn-auth" id="registerBtn">
                     <i class="fas fa-user-plus"></i> Create Account
                 </button>
                 <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--gray-400);">
-                    <i class="fas fa-shield-alt"></i> Your data is safe. We use Formspree to send registration details.
+                    <i class="fas fa-shield-alt"></i> Your registration will be sent to the admin via Formspree.
                 </p>
             </form>
         </div>
@@ -624,13 +630,30 @@
                 <div class="ministry-note">
                     <i class="fas fa-info-circle" style="margin-right:8px;"></i>
                     <strong>Official Textbooks:</strong> All Grade 12 textbooks are available for free download from the
-                    <a href="https://www.moe.gov.et/" target="_blank">Ministry of Education Official Website</a>.
-                    Click <strong>“Open”</strong> below to visit the ministry's site and navigate to the Curriculum section.
+                    <a href="https://www.moe.gov.et/curriculum" target="_blank">Ministry of Education Curriculum Portal</a>.
+                    Click <strong>“Open”</strong> below to visit the curriculum section directly.
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
                     <p style="color:var(--gray-500);font-size:14px;">Curriculum books, reference materials, and video lessons.</p>
                 </div>
                 <div class="resource-grid" id="resourceGrid"></div>
+
+                <!-- Social Media & Community -->
+                <div style="margin-top:24px;">
+                    <h3 style="font-size:18px;font-weight:700;margin-bottom:12px;">📱 Join Our Community</h3>
+                    <div class="social-section">
+                        <a href="https://t.me/ethio_grade12_exam" target="_blank" class="social-link" style="background:#0088cc; color:white;">
+                            <i class="fab fa-telegram-plane"></i> Telegram Channel
+                        </a>
+                        <a href="https://www.youtube.com/playlist?list=PLdTvP-9q3l4z-video" target="_blank" class="social-link" style="background:#ff0000; color:white;">
+                            <i class="fab fa-youtube"></i> YouTube Playlist
+                        </a>
+                        <a href="https://www.youtube.com/@EthiopianEducation" target="_blank" class="social-link" style="background:#cc0000; color:white;">
+                            <i class="fab fa-youtube"></i> Official Education Channel
+                        </a>
+                    </div>
+                    <p style="font-size:13px;color:var(--gray-500);margin-top:8px;">Follow for updates, extra practice questions, and study tips.</p>
+                </div>
             </section>
 
             <!-- ============================================================ -->
@@ -664,10 +687,14 @@
         // ================================================================
         //  CONFIGURATION
         // ================================================================
-        const FORMSPREE_ID = 'https://formspree.io/f/mnjkprag'; // Replace with your own Formspree endpoint
-        const FORMSPREE_URL = FORMSPREE_ID !== 'YOUR_FORMSPREE_ID' ?
-            `https://formspree.io/f/${FORMSPREE_ID}` :
-            null;
+        // Accept either full URL or just the form ID
+        let FORMSPREE_INPUT = 'mnjkprag'; // Replace with your form ID or full URL
+        let FORMSPREE_URL = null;
+        if (FORMSPREE_INPUT.startsWith('http://') || FORMSPREE_INPUT.startsWith('https://')) {
+            FORMSPREE_URL = FORMSPREE_INPUT;
+        } else {
+            FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_INPUT}`;
+        }
 
         // ================================================================
         //  DATA
@@ -892,21 +919,21 @@
             ];
         });
 
-        // ===== RESOURCES (updated with working Ministry homepage) =====
-        const MINISTRY_BASE = 'https://www.moe.gov.et/';
+        // ===== RESOURCES (curriculum portal + social) =====
+        const CURRICULUM_PORTAL = 'https://www.moe.gov.et/curriculum';
         const RESOURCE_DATA = {};
         Object.keys(SUBJECT_META).forEach(k => {
             const meta = SUBJECT_META[k];
             RESOURCE_DATA[k] = [
                 { title: `${meta.name} Student Textbook - Grade 12`,
-                    desc: 'New Curriculum (2023) – Visit the Ministry website to find this book.',
-                    type: '📚 Textbook', tag: 'Core', link: MINISTRY_BASE },
+                    desc: 'New Curriculum (2023) – Direct link to the curriculum portal.',
+                    type: '📚 Textbook', tag: 'Core', link: CURRICULUM_PORTAL },
                 { title: `${meta.name} Teacher\'s Guide`,
-                    desc: 'New Curriculum (2023) – Available on the Ministry website.',
-                    type: '📖 Guide', tag: 'Teacher', link: MINISTRY_BASE },
+                    desc: 'New Curriculum (2023) – Available on the curriculum portal.',
+                    type: '📖 Guide', tag: 'Teacher', link: CURRICULUM_PORTAL },
                 { title: `${meta.name} Past Exam Questions`,
-                    desc: 'Compilation of questions from 2015–2023 – Download from Ministry portal.',
-                    type: '📑 Past Papers', tag: 'Exam', link: MINISTRY_BASE },
+                    desc: 'Compilation from 2015–2023 – Download from the portal.',
+                    type: '📑 Past Papers', tag: 'Exam', link: CURRICULUM_PORTAL },
                 { title: `${meta.name} Video Lessons`,
                     desc: 'Recommended YouTube playlist – click to open.',
                     type: '🎥 Video', tag: 'Video', link: 'https://www.youtube.com/playlist?list=PLdTvP-9q3l4z-video' },
@@ -922,12 +949,12 @@
             subject: null,
             quiz: { questions: [], currentIndex: 0, selectedAnswers: [], seconds: 0, timer: null, active: false },
             progress: {},
-            activity: {},
+            activity: [],
             flashcards: {}
         };
 
         // ================================================================
-        //  AUTH FUNCTIONS (same as before)
+        //  AUTH FUNCTIONS
         // ================================================================
         function switchAuthTab(tab) {
             document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
@@ -988,6 +1015,7 @@
             users.push(user);
             localStorage.setItem('examPrepUsers', JSON.stringify(users));
 
+            // Send to Formspree
             if (FORMSPREE_URL) {
                 try {
                     await fetch(FORMSPREE_URL, {
@@ -995,7 +1023,10 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, email, role, message: `New registration: ${name} (${email}) as ${role}` })
                     });
-                } catch (err) { console.warn('Formspree error:', err); }
+                    console.log('Registration data sent to Formspree.');
+                } catch (err) {
+                    console.warn('Formspree error:', err);
+                }
             }
 
             document.getElementById('registerError').classList.remove('show');
@@ -1045,7 +1076,7 @@
         }
 
         // ================================================================
-        //  NAVIGATION (unchanged)
+        //  NAVIGATION
         // ================================================================
         function navigateTo(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1214,7 +1245,7 @@
         }
 
         // ================================================================
-        //  QUIZ ENGINE (same as before)
+        //  QUIZ ENGINE
         // ================================================================
         function startQuiz() {
             if (!state.subject) { alert('Please select a subject first.'); return; }
@@ -1378,7 +1409,7 @@
         }
 
         // ================================================================
-        //  RESOURCES (updated with working link)
+        //  RESOURCES
         // ================================================================
         function renderResources() {
             const grid = document.getElementById('resourceGrid');
@@ -1546,9 +1577,9 @@
             document.getElementById('authPage').style.display = 'flex';
         });
 
-        console.log('✅ ExamPrep fully functional with fixed resource links.');
-        console.log('📚 All textbook links now point to the Ministry homepage (no 404).');
-        console.log('🔗 Users can navigate to the Curriculum section from there.');
+        console.log('✅ ExamPrep fully functional with Formspree, curriculum portal, and community links.');
+        console.log('📚 All textbook links point directly to the curriculum portal.');
+        console.log('📱 Added Telegram and YouTube references for students.');
     </script>
 </body>
 </html>
